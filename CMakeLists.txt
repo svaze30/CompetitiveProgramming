@@ -12,4 +12,4 @@ add_executable(CompetitiveProgramming
         866a.cpp
         basicfunc.cpp
         binarySearch.cpp
-        rand.cpp)
+        rand.cpp cmake-build-debug/algozenith.cpp hh.cpp 869b.cpp)

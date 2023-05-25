@@ -1,0 +1,3 @@
+C:/Users/acer/OneDrive/Documents/GitHub/CompetitiveProgramming/cmake-build-debug/CMakeFiles/CompetitiveProgramming.dir
+C:/Users/acer/OneDrive/Documents/GitHub/CompetitiveProgramming/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/acer/OneDrive/Documents/GitHub/CompetitiveProgramming/cmake-build-debug/CMakeFiles/rebuild_cache.dir

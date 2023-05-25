@@ -28,11 +28,13 @@ void solve() {
             }
         }
         if (r == 0 && l == 0 && i == n -1 ) {
-            cout << -1;
+            cout<<"-1";
             return;
         }
+            
         
     }
+
     if (l != 0)
         cout << l << " ";
     for (int i = 1 ; i <= n ; i++) {
