@@ -4,7 +4,9 @@ eg: function example(parameter_name1,parameter_name2....){}
 Handle the input/output from main()
 */
 
-
+function solve() {
+    console.log(1)
+}
 
 
 process.stdin.resume();
@@ -45,5 +47,9 @@ function main() {
    Log your output here 
    eg: console.log(x);
    */
+  let t = parseInt(readLine());
+  while (t--) {
+    solve();
+  }
 
 }
