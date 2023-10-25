@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #define endl "\n"
-#define ll long long
 
 void solve();
 
@@ -21,25 +20,27 @@ int main()
 
 void solve()
 {
-  int n;
-  ll k;
+  int n, k;
   cin >> n >> k;
-  int a[n];
-  ll h[n];
+  string s;
+  cin >> s;
+  int srch[26] = {0};
+  int neven = 0;
   for (int i = 0; i < n; i++)
   {
-    cin >> a[i];
+    srch[s[i] - 'a']++;
   }
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < 26; i++)
   {
-    cin >> h[i];
+    neven += srch[i] / 2;
   }
-  int p1 = 0;
-  int p2 = 0;
-  int maxn = 0;
-  int curn = 0;
-  ll sum = 0;
-  deque<int> di;
-
-    cout << maxn << endl;
+  int len = n - k;
+  if (len / 2 <= neven)
+  {
+    cout << "YES" << endl;
+  }
+  else
+  {
+    cout << "NO" << endl;
+  }
 }
