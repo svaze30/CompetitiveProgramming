@@ -4,6 +4,11 @@ typedef long long ll;
 #define loop0(i, n) for (ll i = 0; i < n; i++)
 #define loop1(i, n) for (ll i = 1; i <= n; i++)
 
+#define mp make_pair;
+#define F first;
+#define S second;
+#define pb push_back;
+
 void solve();
 
 using namespace std;
@@ -20,4 +25,16 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  int n;
+  cin >> n;
+  int arr[n];
+  loop0(i, n) cin >> arr[i];
+  for (int i = 1; i < n; i++) {
+    if (arr[i - 1] <= arr[i]) {
+      cout << "YES" << endl;
+      return;
+    }
+  }
+  cout << "NO" << endl;
+}
