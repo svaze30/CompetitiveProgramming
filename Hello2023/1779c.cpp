@@ -1,15 +1,22 @@
 #include <bits/stdc++.h>
 #define endl "\n"
-#define ll long long
+typedef long long ll;
+#define loop0(i, n) for (ll i = 0; i < n; i++)
+#define loop1(i, n) for (ll i = 1; i <= n; i++)
+
+#define mp make_pair;
+#define F first;
+#define S second;
+#define pb push_back;
+
 void solve();
 
 using namespace std;
 
-int main()
-{
+int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  int t;
+  int t = 1;
   cin >> t;
 
   while (t--)
@@ -18,54 +25,40 @@ int main()
   return 0;
 }
 
-void solve()
-{
-  int n, m;
+void solve() {
+  ll n, m;
   cin >> n >> m;
+  vector<ll> arr(n);
 
-  vector<pair<ll, ll>> v;
-  ll sum = 0;
-  for (int i = 1; i <= n; i++)
-  {
-    ll a;
-    cin >> a;
+  vector<ll> pre(m);
+  priority_queue<ll> pq;
 
-    pair<ll, ll> p = make_pair(a, a + sum);
-    sum = sum + a;
-    v.push_back(p);
-  }
-  int ans = 0;
-  ll toadd = 0;
-  ll toadd2 = 0;
-
-  for (int i = 0; i < n; i++)
-  {
-    if (i < m - 1)
-    {
-      if (v[m - 1].second > v[i].second)
-      {
-        if (v[m - 1].first > 0)
-        {
-          v[m - 1].first *= -1;
-          ans++;
-          toadd2 = toadd2 + 2 * v[m - 1].first;
-          v[i].second += toadd2;
-        }
-        if ((v[i].first > 0) && (v[m - 1].second > v[i].second))
-        {
-          v[i].first *= -1;
-          ans++;
-        }
+  ll t = 0, prev = 0;
+  loop0(i, n) {
+    cin >> arr[i];
+    if (i == 0)
+      pre[i] = arr[i];
+    else if (i >= m) {
+      if (prev + arr[i] < 0) {
+        t++;
+        prev += -1 * arr[i];
+      } else {
+        prev += arr[i];
       }
-    }
-    else if (i > m - 1)
-    {
-      if (v[i].second + toadd + toadd2 < v[m - 1].second)
-      {
-        ans++;
-        toadd += -2 * v[i].first;
-      }
-    }
+    } else
+      pre[i] = pre[i - 1] + arr[i];
   }
-  cout << ans << endl;
+
+  ll curr = pre[m];
+  ll ans = 0;
+  for (int i = m - 1; i >= 0; i--) {
+    while (pre[i] < curr) {
+      ll top = pq.top();
+      pq.pop();
+      curr -= 2 * top;
+      ans++;
+    }
+    pq.push(arr[i]);
+  }
+  cout << ans + t << endl;
 }

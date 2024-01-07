@@ -1,7 +1,8 @@
 {
-    "files.associations": {
-        "algorithm": "cpp",
-        "iostream": "cpp",
-        "ostream": "cpp"
-    }
+  "files.associations": {
+    "algorithm": "cpp",
+    "iostream": "cpp",
+    "ostream": "cpp",
+    "cmath": "cpp"
+  }
 }
