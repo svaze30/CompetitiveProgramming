@@ -19,8 +19,10 @@ int main() {
   int t = 1;
   cin >> t;
 
-  while (t--)
+  for (int i = 1; i <= t; i++) {
+
     solve();
+  }
 
   return 0;
 }
@@ -29,58 +31,32 @@ void solve() {
   int n;
   cin >> n;
 
-  vector<int> a(n);
-  vector<int> b(n);
+  vector<int> a(n + 1);
+  vector<int> b(n + 1);
 
-  loop0(i, n) { cin >> a[i]; }
-  loop0(i, n) { cin >> b[i]; }
+  loop1(i, n) { cin >> a[i]; }
+  loop1(i, n) { cin >> b[i]; }
 
-  map<int, int> mapa;
-  map<int, int> mapb;
+  vector<int> mapa(2 * n + 1, 0);
+  vector<int> mapb(2 * n + 1, 0);
 
-  int prev = 0;
-  int len = 1;
-  loop0(i, n) {
-    if (a[i] == prev) {
-      len++;
-      mapa[a[i]] = max(mapa[a[i]], len);
-    } else {
-      if (mapa.count(a[i]) == 0)
-        mapa[a[i]] = 1;
-      len = 1;
+  int prev = 1;
+  for (int i = 2; i <= n; i++) {
+    if (a[i] != a[i - 1]) {
+      mapa[a[i - 1]] = max(mapa[a[i - 1]], i - prev);
+      prev = i;
     }
-    prev = a[i];
   }
-  // for (auto i : mapa) {
-  //   cout << i.first << ' ' << i.second << endl;
-  // }
-  // cout << endl;
-
-  len = 1;
-  prev = 0;
-  loop0(i, n) {
-    if (b[i] == prev) {
-      len++;
-      mapb[b[i]] = max(mapb[b[i]], len);
-    } else {
-      if (mapa.count(b[i]) == 0) {
-        mapa[b[i]] = 1;
-      }
-      len = 1;
+  mapa[a[n]] = max(mapa[a[n]], n - prev + 1);
+  prev = 1;
+  for (int i = 2; i <= n; i++) {
+    if (b[i] != b[i - 1]) {
+      mapb[b[i - 1]] = max(mapb[b[i - 1]], i - prev);
+      prev = i;
     }
-    prev = b[i];
   }
-
-  for (auto i : mapb) {
-    cout << i.first << ' ' << i.second << endl;
-  }
-  cout << endl;
-  // int ans = 0;
-  // for (auto i : mapa) {
-  //   int j = i.first;
-  //   if (mapb.count(j) > 0) {
-  //     ans = max(ans, i.second + mapb[i.first]);
-  //   }
-  // }
-  // cout << ans << endl;
+  mapb[b[n]] = max(mapb[b[n]], n - prev + 1);
+  int ans = 0;
+  loop1(i, 2 * n) ans = max(ans, mapa[i] + mapb[i]);
+  cout << ans << endl;
 }
