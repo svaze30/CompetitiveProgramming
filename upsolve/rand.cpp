@@ -34,22 +34,23 @@ void solve() {
   }
   vector<int> yo(k + 1);
   vector<int> prev(k + 1);
-  vector<int> emp = {};
-  vector<vector<int>> map(k + 1, emp);
+  priority_queue<int> emp = {};
+  vector<priority_queue<int>> map(k + 1, emp);
   for (int i = 0; i < n; i++) {
     if (map[c[i]].size() == 0) {
-      map[c[i]].push_back(i);
+      map[c[i]].push(i);
       prev[c[i]] = i;
     } else {
-      map[c[i]].push_back(i - prev[c[i]] - 1);
+      map[c[i]].push(i - prev[c[i]] - 1);
       prev[c[i]] = i;
     }
   }
-  loop1(i, k) { map[i].push_back(n - prev[i] - 1); }
+  loop1(i, k) { map[i].push(n - prev[i] - 1); }
+  int ans = INT_MAX;
   loop1(i, k) {
-    for (auto j : map[i]) {
-      cout << j << ' ';
-    }
-    cout << endl;
+    int t = map[i].top() / 2;
+    map[i].pop();
+    ans = min(ans, max(t, map[i].top()));
   }
+  cout << ans << endl;
 }

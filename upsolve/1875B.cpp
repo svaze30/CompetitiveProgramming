@@ -26,33 +26,36 @@ int main() {
 }
 
 void solve() {
-  int n, m, k;
+  ll n, m, k;
   cin >> n >> m >> k;
-  vector<int> a(n);
-  vector<int> b(m);
-  int suma = 0, sumb = 0;
+  vector<ll> a(n);
+  vector<ll> b(m);
+  ll suma = 0, sumb = 0;
   loop0(i, n) cin >> a[i];
   loop0(i, m) cin >> b[i];
-  loop0(i, n) suma += a[i];
-  loop0(i, m) sumb += b[i];
 
-  int maxa = *max_element(a.begin(), a.end());
-  int mina = *min_element(a.begin(), a.end());
-  int maxb = *max_element(b.begin(), b.end());
-  int minb = *min_element(b.begin(), b.end());
+  sort(a.begin(), a.end());
+  sort(b.begin(), b.end());
 
   if (k % 2 == 0) {
-    if (maxa > maxb) {
-      cout << suma - maxa + maxb << endl;
+    if (b[m - 1] >= a[0]) {
+
+      swap(b[m - 1], a[0]);
+      if (a[n - 1] > a[0]) {
+        swap(a[n - 1], b[m - 1]);
+      } else {
+        swap(a[0], b[m - 1]);
+      }
+
     } else {
-      cout << suma << endl;
+      swap(b[0], a[n - 1]);
     }
   } else {
-    if (mina > maxb) {
-      cout << suma - mina + maxb << endl;
-    } else {
-      cout << suma - mina + maxb << endl;
-      // cout << suma << endl;
+    if (b[m - 1] >= a[0]) {
+      swap(b[m - 1], a[0]);
     }
   }
+  ll sum = 0;
+  loop0(i, n) sum += a[i];
+  cout << sum << endl;
 }
