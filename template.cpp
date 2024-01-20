@@ -9,6 +9,8 @@ typedef long long ll;
 #define S second;
 #define pb push_back;
 
+using namespace std;
+
 void debug(auto arr) {
   for (auto i : arr)
     cout << i << ' ';
@@ -16,8 +18,6 @@ void debug(auto arr) {
 }
 
 void solve();
-
-using namespace std;
 
 int main() {
   ios_base::sync_with_stdio(false);

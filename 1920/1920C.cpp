@@ -30,40 +30,18 @@ void solve() {
   cin >> n;
   vector<int> arr(n);
   loop0(i, n) cin >> arr[i];
-  int square_root = (int)sqrt(n) + 1;
-  vector<int> divisors;
-  for (int i = 1; i < square_root; i++) {
-    if (n % i == 0 && i * i != n) {
-      divisors.push_back(i);
-      divisors.push_back(n / i);
-    } else if (n % i == 0 && i * i == n)
-      divisors.push_back(i);
-  }
+  int ans = 0;
+  loop1(k, n) {
+    if (n % k != 0)
+      continue;
 
-  bool prime[n + 1];
-  memset(prime, true, sizeof(prime));
-  vector<int> pr;
-  for (int p = 2; p * p <= n; p++) {
-    // If prime[p] is not changed, then it is a prime
-    if (prime[p] == true) {
-      // Update all multiples of p
-      pr.push_back(p);
-      for (int i = p * p; i <= n; i += p)
-        prime[i] = false;
+    int g = 0;
+    for (int i = 0; i + k < n; i++) {
+      g = gcd(g, abs(arr[i + k] - arr[i]));
+    }
+    if (g != 1) {
+      ans++;
     }
   }
-
-  loop0(i, divisors.size()) cout << divisors[i] << ' ';
-  cout << endl;
-  loop0(i, pr.size()) cout << pr[i] << ' ';
-  cout << endl;
-  int ans = 0;
-  for (int i = 0; i < divisors.size(); i++) {
-    int k = divisors[i];
-    for (int j = 0; j < pr.size(); j++) {
-      int m = pr[i];
-      vector<int> dup(n);
-      loop0(i, n) dup[i] = arr[i] % m;
-        }
-  }
+  cout << ans << endl;
 }
