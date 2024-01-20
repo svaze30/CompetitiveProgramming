@@ -29,37 +29,49 @@ void solve() {
   ll h, w, xa, ya, xb, yb;
   cin >> h >> w >> xa >> ya >> xb >> yb;
   if (xa >= xb) {
-    cout << "DRAW" << endl;
+    cout << "Draw" << endl;
     return;
   }
-  if (abs(ya - yb) >= h - xa or abs(ya - yb) >= xb - 1) {
-    cout << "DRAW" << endl;
-    return;
-  }
+  // if (abs(ya - yb) >= h - xa or abs(ya - yb) >= xb - 1) {
+  //   cout << "Draw" << endl;
+  //   return;
+  // }
   if ((xa - xb) % 2 != 0) {
     // alice
-    // xb -= xa;
-
-    // yb -= ya;
-    ll meet = (xa + xb) / 2;
-    ll one = 1;
-    if (min(w, yb + xb - meet) < min(w, ya + xa + meet) ||
-        max(one, yb + meet - xb) > max(one, ya - meet + xa)) {
-      cout << "DRAW" << endl;
+    ll meet = (xa + xb + 1) / 2;
+    ll one = 1ll;
+    if (yb > ya) {
+      if (min(w, yb + xb - meet) > min(w, ya - xa + meet)) {
+        cout << "Draw" << endl;
+        return;
+      } else {
+        cout << "Alice" << endl;
+        return;
+      }
     } else {
-      cout << "ALICE" << endl;
+      if (max(one, yb + meet - xb) < max(one, ya - meet + xa)) {
+        cout << "Draw" << endl;
+      } else {
+        cout << "Alice" << endl;
+      }
     }
+
   } else {
     // bob
-    // xb -= xa;
-    // yb -= ya;
-    ll meet = (xb + xa + 1) / 2;
-    ll one = 1;
-    if (min(w, ya + meet - xa) < min(w, yb + xb - meet) ||
-        max(one, ya - meet + xa) > max(one, yb + meet - xb)) {
-      cout << "DRAW" << endl;
+    ll meet = (xb + xa) / 2;
+    ll one = 1ll;
+    if (yb > ya) {
+      if (max(one, ya - meet + xa) < max(one, yb + meet - xb)) {
+        cout << "Draw" << endl;
+      } else {
+        cout << "Bob" << endl;
+      }
     } else {
-      cout << "BOB" << endl;
+      if (min(w, ya + meet - xa) > min(w, yb + xb - meet)) {
+        cout << "Draw" << endl;
+      } else {
+        cout << "Bob" << endl;
+      }
     }
   }
 }
