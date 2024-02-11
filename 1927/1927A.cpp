@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
-
-using namespace std;
-
 #define endl "\n"
 typedef long long ll;
 #define loop0(i, n) for (ll i = 0; i < n; i++)
 #define loop1(i, n) for (ll i = 1; i <= n; i++)
-#define mp make_pair
-#define F first
-#define S second
-#define pb push_back
-#define yes cout << "YES" << endl
-#define no cout << "NO" << endl
+
+#define mp make_pair;
+#define F first;
+#define S second;
+#define pb push_back;
+
+using namespace std;
 
 void debug(auto arr) {
   for (auto i : arr)
@@ -33,4 +31,25 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  int n;
+  cin >> n;
+  string s;
+  cin >> s;
+
+  int x = 0, e = n - 1;
+
+  loop0(i, n) {
+    if (s[i] == 'B') {
+      x = i;
+      break;
+    }
+  }
+  for (int i = n - 1; i >= 0; i--) {
+    if (s[i] == 'B') {
+      e = i;
+      break;
+    }
+  }
+  cout << (e - x + 1) << endl;
+}
