@@ -38,4 +38,26 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  int x;
+  cin >> x;
+  int a = x, b = 0;
+  bitset<33> aa(a);
+  bitset<33> bb(b);
+  cout << aa << ' ' << bb << endl;
+  for (int i = 32; i >= 0; i--) {
+    if (x & (1 << i) > 0) {
+      continue;
+    }
+    if (2 * x - aa.to_ulong() - bb.to_ulong() >= (2 << i)) {
+      aa.set(i);
+      bb.set(i);
+    }
+  }
+  a = aa.to_ulong(), b = bb.to_ulong();
+  if ((a + b == 2 * x) and (a ^ b == x)) {
+    cout << a << ' ' << b << endl;
+  } else {
+    cout << -1 << endl;
+  }
+}

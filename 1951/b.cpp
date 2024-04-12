@@ -38,4 +38,19 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n, x;
+  cin >> n >> x;
+  vll a(n);
+  loop0(i, n) cin >> a[i];
+  sort(all(a));
+  ll cnt = 0;
+  ll curr = 0;
+  loop0(i, n) {
+    if (curr + a[i] <= x) {
+      cnt++;
+      curr += a[i];
+    }
+  }
+  cout << cnt << endl;
+}

@@ -38,4 +38,12 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  int x, y, z;
+  cin >> x >> y >> z;
+  if (y * z <= x) {
+    cout << "Mazze" << endl;
+  } else {
+    cout << "Dudh Mehenga Hai" << endl;
+  }
+}

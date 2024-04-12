@@ -38,4 +38,39 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n, k;
+  cin >> n >> k;
+  k--;
+  vi a(n, 0);
+  loop0(i, n) cin >> a[i];
+  ll ans = 0;
+  // swap to first and then get what is the ans {
+  swap(a[0], a[k]);
+  for (ll i = 1; i < n; i++) {
+    if (a[i] < a[0]) {
+      ans++;
+    } else
+      break;
+  }
+  swap(a[0], a[k]);
+  //}
+  if (k != 0 and a[0] < a[k]) {
+    ll firstbig = k;
+    for (ll i = 0; i < n; i++) {
+      if (a[i] > a[k]) {
+        firstbig = i;
+        break;
+      }
+    }
+    swap(a[k], a[firstbig]);
+    ll x = 0;
+    for (ll i = firstbig; i < n; i++) {
+      if (a[i] <= a[firstbig]) {
+        ans = max(ans, ++x);
+      } else
+        break;
+    }
+  }
+  cout << ans << endl;
+}

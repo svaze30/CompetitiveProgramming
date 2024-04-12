@@ -38,4 +38,37 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n, m;
+  cin >> n >> m;
+  vll a(n);
+  loop0(i, n) cin >> a[i];
+
+  int ans = 0;
+
+  priority_queue<ll> pq;
+  priority_queue<ll, vll, greater<ll>> pq2;
+  ll sum = 0;
+  for (int i = m; i < n; i++) {
+    sum += a[i];
+    if (a[i] < 0)
+      pq.push(-a[i]);
+    if (sum < 0) {
+      sum += 2 * pq.top();
+      pq.pop();
+      ans++;
+    }
+  }
+  sum = 0;
+  for (int i = m - 1; i >= 1; i--) {
+    sum += a[i];
+    if (a[i] > 0)
+      pq2.push(-a[i]);
+    if (sum > 0) {
+      sum += 2 * pq2.top();
+      pq2.pop();
+      ans++;
+    }
+  }
+  cout << ans << endl;
+}

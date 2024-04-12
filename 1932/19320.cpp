@@ -12,11 +12,6 @@ typedef long long ll;
 #define pb push_back
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
-#define all(x) x.begin(), x.end()
-#define vi vector<int>
-#define vll vector<ll>
-#define pi pair<int, int>
-#define pll pair<ll, ll>
 
 void debug(auto arr) {
   for (auto i : arr)
@@ -38,4 +33,21 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n;
+  cin >> n;
+  string s;
+  cin >> s;
+  ll ans = 0;
+  for (int i = 0; i < n; i++) {
+    if (s[i] == '@')
+      ans++;
+    if (i != n - 1) {
+      if (s[i] == '*' and s[i + 1] == '*') {
+        cout << ans << endl;
+        return;
+      }
+    }
+  }
+  cout << ans << endl;
+}

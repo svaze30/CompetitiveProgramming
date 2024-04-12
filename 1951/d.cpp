@@ -17,7 +17,7 @@ typedef long long ll;
 #define vll vector<ll>
 #define pi pair<int, int>
 #define pll pair<ll, ll>
-
+#define MOD (ll)1000000007
 void debug(auto arr) {
   for (auto i : arr)
     cout << i << ' ';
@@ -38,4 +38,34 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n;
+  cin >> n;
+  vll a(n);
+  loop0(i, n) cin >> a[i];
+  map<ll, ll> mymap;
+  ll n2 = 0;
+  for (int i = 0; i < n; i++) {
+    mymap[a[i]]++;
+  }
+  for (auto j : mymap) {
+    if (j.S == 2)
+      n2++;
+    if (j.S > 2) {
+      cout << 0 << endl;
+      return;
+    }
+  }
+  ll maxelem = *max_element(all(a));
+  if (mymap[maxelem] == 2) {
+    cout << 0 << endl;
+    return;
+  }
+  ll elems = n - n2 * 2 - 1;
+
+  ll ans = 1;
+  for (ll i = 0; i < elems; i++) {
+    ans = (2 * ans) % MOD;
+  }
+  cout << ans << endl;
+}

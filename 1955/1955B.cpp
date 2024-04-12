@@ -38,4 +38,33 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n, c, d;
+  cin >> n >> c >> d;
+  vector<vector<ll>> arr(n, vector<ll>(n, 1));
+  vll a(n * n);
+  vll b(n * n);
+  loop0(i, n * n) cin >> a[i];
+  sort(all(a));
+  arr[0][0] = a[0];
+  for (int i = 1; i < n; i++) {
+    arr[0][i] = arr[0][i - 1] + c;
+  }
+  for (int i = 1; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      arr[i][j] = arr[i - 1][j] + d;
+    }
+  }
+  int x = 0;
+  loop0(i, n) loop0(j, n) b[x++] = arr[i][j];
+  // loop0(i, n * n) cout <<
+  sort(all(b));
+  // debug(b);
+  for (int i = 0; i < n * n; i++) {
+    if (a[i] != b[i]) {
+      no;
+      return;
+    }
+  }
+  yes;
+}

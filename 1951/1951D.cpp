@@ -38,4 +38,21 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n, k;
+  cin >> n >> k;
+  if (n < k) {
+    no;
+    return;
+  } else if (n % k == 0) {
+    yes;
+    cout << 1 << endl << n / k << endl;
+    return;
+  } else if ((n + 1) / 2 >= k) {
+    yes;
+    cout << 2 << endl;
+    cout << n - k + 1 << ' ' << 1 << endl;
+    return;
+  }
+  no;
+}

@@ -38,4 +38,7 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  int n1, n2, n3, n4;
+  cin >> n1 >> n2 >> n3 >> n4;
+}

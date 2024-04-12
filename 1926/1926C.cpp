@@ -12,11 +12,6 @@ typedef long long ll;
 #define pb push_back
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
-#define all(x) x.begin(), x.end()
-#define vi vector<int>
-#define vll vector<ll>
-#define pi pair<int, int>
-#define pll pair<ll, ll>
 
 void debug(auto arr) {
   for (auto i : arr)
@@ -26,9 +21,22 @@ void debug(auto arr) {
 
 void solve();
 
+vector<int> arr(200006, 0);
+int func(int n) {
+  int ans = 0;
+  while (n != 0) {
+    ans += n % 10;
+    n /= 10;
+  }
+  return ans;
+}
+
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+  for (int i = 1; i <= 200005; i++) {
+    arr[i] = arr[i - 1] + func(i);
+  }
   int t = 1;
   cin >> t;
 
@@ -38,4 +46,8 @@ int main() {
   return 0;
 }
 
-void solve() {}
+void solve() {
+  ll n;
+  cin >> n;
+  cout << arr[n] << endl;
+}
